@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+    <style>
+        .right-half {
+            padding-left: 20px;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            background-color: #f4f4f4;
+            
+        }
+
+        .info-box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+
+        .info-box img {
+            margin-right: 20px;
+        }
+
+        .info-box h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .info-box p {
+            margin: 8px 0 0;
+        }
+                .info-box button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 10px;
+        }
+        .info-box button:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        .info-box button[name="delete"] {
+            background-color: #c62828;
+        }
+        .info-box button[name="delete"]:hover {
+            background-color: #8e0000;
+        }
+    </style>
+        <div class="right-half">
+            <div class="info-box">
+            <img src="{{ tech.icon.url }}" alt="App icon" width="256" height="256">
+            <div>
+                <h3>{{ tech.name }}</h3>
+                <p>{{ tech.desc}} </p>
+            </div>
+        </div>
+
+        </div>
+{% endblock content %}

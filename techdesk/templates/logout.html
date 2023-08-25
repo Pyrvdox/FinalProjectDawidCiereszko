@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Desk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-panel-title {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .top-panel-title h1 {
+            color: white;
+        }
+
+        .top-panel {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .top-panel button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .top-panel button:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .bottom-panel {
+            background-color: white;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        a{
+            color:#4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-panel-title">
+        <h1>TECH DESK</h1>
+    </div>
+    <div class="top-panel">
+    </div>
+    <div class="bottom-panel">
+        <p>You were successfully logged out!</p>
+        <p><a href={% url 'login' %}>If you want to log in, click here!</a></p>
+    </div>
+</body>
+</html>

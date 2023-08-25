@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .form-box {
+        padding-left: 20px;
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        background-color: #f4f4f4;
+    }
+
+    .info-box {
+        text-align: center;
+        margin-bottom: 20px;
+        margin-right: 20px;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-box h3 {
+        margin: 0;
+        font-size: 28px;
+    }
+
+    .info-box p {
+        margin: 8px 0 0;
+    }
+
+    .info-box img {
+        margin-right: 20px;
+    }
+
+    .AddForm button {
+        width: 10%;
+        padding: 10px;
+        margin: 25px 0;
+        border: none;
+        background-color: #333;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .AddForm button:hover {
+        background-color: #4CAF50;
+        color: #fff;
+    }
+
+    a {
+        color: #4CAF50;
+    }
+
+    .AddForm .form-box .info-box select {
+        width: 100%;
+    }
+
+    .AddForm .form-box .info-box textarea {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+</style>
+<form method="POST" enctype="multipart/form-data" class="AddForm">
+    {% csrf_token %}
+    <div class="form-box">
+        <div class="info-box">
+            <h3>Request new application</h3>
+            {{ form.as_p }}
+            <button type="submit">SUBMIT</button>
+        </div>
+    </div>
+</form>
+{% endblock content %}

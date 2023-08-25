@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <style>
+        .profile {
+            padding-left: 20px;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            background-color: #f4f4f4;
+
+        }
+
+        .info-box {
+
+            margin-bottom: 20px;
+            margin-right: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+        .info-box h3 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .info-box p {
+            margin: 8px 0 0;
+        }
+        .app-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .app-table th,
+        .app-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .app-icon img {
+            max-width: 50px;
+            max-height: 50px;
+        }
+        .user-icon {
+            margin-right: 20px;
+            margin-bottom: 20px;
+            flex: 0;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    <div class="profile">
+        <div class="info-box">
+            <div class="user-icon">
+                <img src={% static 'usericon.png' %} width="150px" height="150px">
+            </div>
+
+            <h3>{{person_name}}</h3><br>
+            <p>EMAIL: {{ person.email }}</p>
+            <p>DEPARTMENT: {{ person.department }}</p>
+            <p>EMPLOYEE CODE: {{ person.code }}</p>
+            <p>DATE JOINED: {{ person.date_joined }}</p>
+        </div>
+        <div class="info-box">
+            <h3>MY DEVICES</h3>
+            <table class="app-table">
+                <thead>
+                    <tr>
+                        <th>Icon</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for person_tech in person_tech_tickets %}
+                        <tr>
+                            <td class="app-icon"><img src="{{ person_tech.item.icon.url }}" alt="Ikona"></td>
+                            <td>{{ person_tech.item.name }}</td>
+                            <td>{{ person_tech.item.desc }}</td>
+                            <td><a href={% url 'mytech' id=person_tech.item.id %}><img src="{% static 'continue.png' %}" width="50" height="50"></a></td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="info-box">
+            <h3>MY APPS</h3>
+            <table class="app-table">
+                <thead>
+                    <tr>
+                        <th>Icon</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for person_app in person_app_tickets %}
+                        <tr>
+                            <td class="app-icon"><img src="{{ person_app.item.icon.url }}" alt="Ikona"></td>
+                            <td>{{ person_app.item.name }}</td>
+                            <td>{{ person_app.item.desc }}</td>
+                            <td><a href={% url 'myapp' id=person_app.item.id %}><img src="{% static 'continue.png' %}" width="50" height="50"></a></td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}

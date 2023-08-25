@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <style>
+        .right-half {
+            padding-left: 20px;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            background-color: #f4f4f4;
+        }
+
+        .info-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+
+        .info-box img {
+            margin-right: 20px;
+        }
+
+        .info-box h3 {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .info-box p {
+            margin: 5px 0;
+        }
+               .TicketForm button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .TicketForm button:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+    </style>
+    <div class="right-half">
+        <div class="info-box">
+            <h3>APP REQUEST - ID:{{ appticket.id }}</h3>
+            <p>TICKET STATUS: {{ appticket.status }}</p>
+        </div>
+        <div class="info-box">
+            <img src="{{ appticket.item.icon.url }}" alt="App icon" width="50" height="50">
+            <h3>APP: {{ appticket.item.name }}</h3>
+            <p>APP DESCRIPTION: {{ appticket.item.desc }}</p>
+        </div>
+        <div class="info-box">
+            <h3>AUTHOR: {{ appticket.author.email }}</h3>
+            <h3>DATE CREATED: {{ appticket.created }}</h3>
+
+            <p>AUTHOR COMMENT: {{ appticket.comment }}</p>
+        </div>
+        <div class="info-box">
+            {% if appticket.status == 'Pending' and user.is_superuser %}
+            <form method="POST" class="TicketForm">
+                {% csrf_token %}
+                <h3>ACTION</h3>
+                <textarea name="feedback" id="feedback" rows="4" cols="50" required></textarea>
+                <br>
+                <button type="submit" name="positive">ACCEPT</button>
+                <button type="submit" name="negative">REJECT</button>
+            </form>
+            {% else %}
+                <h3>FEEDBACK</h3>
+                <p>{{ appticket.feedback }}</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

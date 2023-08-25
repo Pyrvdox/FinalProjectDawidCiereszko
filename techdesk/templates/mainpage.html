@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block content %}
+    {% load static %}
+    <style>
+    .right-half {
+            padding-left: 20px;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            background-color: #f4f4f4;
+
+        }
+
+        .info-box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+
+        .info-box img {
+            margin-right: 20px;
+        }
+
+        .info-box h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .info-box p {
+            margin: 8px 0 0;
+        }
+        .counter-box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+
+        .counter-box img {
+            margin-right: 20px;
+        }
+
+        .counter-box h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .counter-box p {
+            margin: 8px 0 0;
+        }
+        .counter-boxes-container {
+            display: flex;
+        }
+
+        .counter-box:nth-child(1),
+        .counter-box:nth-child(2),
+        .counter-box:nth-child(3) {
+            flex: 1;
+            margin-right: 20px;
+        }
+    </style>
+    <div class="right-half">
+        <div class="counter-boxes-container">
+            <div class="counter-box">
+                <p>All Tech Desk users: {{ allusers }}</p>
+            </div>
+            <div class="counter-box">
+                <p>Device Requests waiting for action: {{ alltechtickets }}</p>
+            </div>
+            <div class="counter-box">
+                <p>Application Requests waiting for action: {{ allapptickets }}</p>
+            </div>
+        </div>
+        <div class="counter-boxes-container">
+            <div class="counter-box">
+                <a href={% url 'allhardwere' %} ><img src="{% static 'devices.jpg' %}" alt="Devices" height=100% width=100% ></a>
+            </div>
+            <div class="counter-box">
+                <a href={% url 'allapps' %} ><img src="{% static 'appwallpaper.jpg' %}" alt="Devices" height=100% width=100% ></a>
+            </div>
+        </div>
+        <div class="info-box">
+            <a href={% url 'office' %} ><img src="{% static 'work.jpg' %}" alt="Work Environment" height="180" width="180"></a>
+            <div>
+                <h3>Office environment</h3>
+                <p>Rules for the use of office and office's equipment</p>
+            </div>
+        </div>
+        <div class="info-box">
+            <a href={% url 'eqandapps' %} ><img src="{% static 'laptop.jpg' %}" alt="Use of Corporate Equipment" height="180" width="180"></a>
+            <div>
+                <h3>Equipment and applications</h3>
+                <p>Regulations for the use of company equipment and applications </p>
+            </div>
+        </div>
+        <div class="info-box">
+            <a href={% url 'saleshelp' %} ><img src="{% static 'meeting.jpg' %}" alt="Meetings & Events" height="180" width="180"></a>
+            <div>
+                <h3>Meetings & Events</h3>
+                <p>Learn how best to organize meetings. What equipment you will need and how to create effective presentations</p>
+            </div>
+        </div>
+    </div>
+{% endblock content %} #}

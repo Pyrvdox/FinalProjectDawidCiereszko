@@ -1,0 +1,356 @@
+PL
+
+WIDOKI:
+
+class Register(View):
+    Obsługuje rejestrację użytkownika.
+    GET: Renderuje formularz rejestracji.
+    POST: Przetwarza formularz rejestracji i tworzy nowe konto użytkownika.
+
+class Login(View):
+    Obsługuje logowanie użytkownika.
+    GET: Renderuje formularz logowania.
+    POST: Uwierzytelnia użytkownika i loguje go, jeśli dane uwierzytelniające są poprawne.
+
+class MainpageView(LoginRequiredMixin, View):
+    Wyświetla główną stronę po zalogowaniu użytkownika.
+    GET: Renderuje główną stronę z podsumowaniem informacji.
+
+class LogoutView(View):
+    Wylogowuje aktualnie uwierzytelnionego użytkownika.
+    GET: Wylogowuje użytkownika i renderuje stronę wylogowania.
+
+class ChooseFormView(LoginRequiredMixin, View):
+    Wybór formularza do wypełnienia.
+    GET: Renderuje stronę wyboru formularza.
+
+class ProfileView(LoginRequiredMixin, View):
+    Wyświetla profil użytkownika.
+    GET: Renderuje stronę profilu użytkownika z danymi i ticketami.
+
+class AddNewChooseView(LoginRequiredMixin, View):
+    Wybór rodzaju nowego elementu (aplikacja lub technologia).
+    GET: Renderuje stronę wyboru rodzaju nowego elementu.
+
+class AddAppView(LoginRequiredMixin, View):
+    Dodawanie nowej aplikacji.
+    GET: Renderuje formularz dodawania aplikacji.
+    POST: Przetwarza formularz i tworzy nową aplikację.
+
+class AllAppsView(LoginRequiredMixin, ListView):
+    Wyświetla listę wszystkich aplikacji.
+    GET: Renderuje listę wszystkich aplikacji.
+
+class AddNewHardwereView(LoginRequiredMixin, View):
+    Dodawanie nowego urządzenia.
+    GET: Renderuje formularz dodawania urządzenia.
+    POST: Przetwarza formularz i tworzy nowy element technologiczny.
+
+class AllHardwereView(LoginRequiredMixin, ListView):
+    Wyświetla listę wszystkich urządzeń.
+    GET: Renderuje listę wszystkich urządzeń.
+
+class NewTechTicketView(LoginRequiredMixin, View):
+    Tworzenie nowego zgłoszenia Tech Desku.
+    GET: Renderuje formularz tworzenia nowego zgoszenia Tech Desku.
+    POST: Przetwarza formularz i tworzy nowy ticket.
+
+class AllTechTicketsView(LoginRequiredMixin, ListView):
+    Wyświetla listę wszystkich ticketów Tech Desku.
+    GET: Renderuje listę wszystkich ticketów Tech Desku.
+
+class NewAppTicketView(LoginRequiredMixin, View):
+    Tworzenie nowego zgoszenia Tech Desku.
+    GET: Renderuje formularz tworzenia nowego zgoszenia Tech Desku.
+    POST: Przetwarza formularz i tworzy nowy ticket.
+
+class AllAppTicketsView(LoginRequiredMixin, ListView):
+    Wyświetla listę wszystkich ticketów Tech Desku.
+    GET: Renderuje listę wszystkich ticketów Tech Desku.
+
+class AllEmployeeTicketsView(LoginRequiredMixin, View):
+    Wyświetla listę ticketów dla konkretnego pracownika.
+    GET: Renderuje listę ticketów dla danego pracownika.
+
+class AppView(LoginRequiredMixin, View):
+    Wyświetla szczegóły aplikacji.
+    GET: Renderuje stronę z danymi szczegółowymi aplikacji.
+
+class AppTicketView(LoginRequiredMixin, View):
+    Wyświetla szczegóły zgoszenia Tech Desku.
+    GET: Renderuje stronę z danymi szczegółowymi zgoszenia.
+    POST: Przetwarza formularz i aktualizuje status zgoszenia.
+
+class TechView(LoginRequiredMixin, View):
+    Wyświetla szczegóły urządzenia.
+    GET: Renderuje stronę z danymi szczegółowymi elementu.
+
+class TechTicketView(LoginRequiredMixin, View):
+    Wyświetla szczegóły zgoszenia Tech Desku.
+    GET: Renderuje stronę z danymi szczegółowymi zgoszenia.
+    POST: Przetwarza formularz i aktualizuje status zgoszenia.
+
+class MyAppView(LoginRequiredMixin, View):
+    Wyświetla szczegóły aplikacji użytkownika.
+    GET: Renderuje stronę z danymi szczegółowymi aplikacji użytkownika.
+    POST: Przetwarza formularz i aktualizuje status zgoszenia aplikacyjnego.
+
+class MyTechView(LoginRequiredMixin, View):
+    Wyświetla szczegóły urz użytkownika.
+    GET: Renderuje stronę z danymi szczegółowymi urz użytkownika.
+    POST: Przetwarza formularz i aktualizuje status zgoszenia technicznego.
+
+class EqView(View):
+    Wyświetla stronę z informacjami o sprzęcie.
+    GET: Renderuje stronę z informacjami o sprzęcie.
+
+class OfficeView(View):
+    Wyświetla stronę z informacjami o biurze.
+    GET: Renderuje stronę z informacjami o biurze.
+
+class SalesHelpView(View):
+    Wyświetla stronę z informacjami o wsparciu dla działu sprzedaży.
+    GET: Renderuje stronę z informacjami o wsparciu dla działu sprzedaży.
+
+MODELE:
+
+class CustomUser(AbstractUser):
+    Rozszerza klasę AbstractUser w Django o niestandardowe informacje użytkownika.
+    Pola: department (ciąg znaków), code (ciąg znaków)
+
+class Tech(models.Model):
+    Przedstawia konkretne urządzenie.
+    Pola: name (ciąg znaków), desc (tekst), icon (obraz), tickets (powiązane tickety techniczne)
+
+class App(models.Model):
+    Przedstawia konkretne aplikację.
+    Pola: name (ciąg znaków), desc (tekst), icon (obraz), tickets (powiązane tickety aplikacyjne)
+
+class Techticket(models.Model):
+    Przedstawia ticket Tech Desku.
+    Pola: item (FK Tech), author (FK CustomUser), created (data i godzina),
+            comment (tekst), feedback (tekst), status (ciąg znaków)
+
+class Appticket(models.Model):
+    Przedstawia ticket Tech Desku.
+    Pola: item (FK App), author (FK CustomUser), created (data i godzina),
+            comment (tekst), feedback (tekst), status (ciąg znaków)
+
+FORMULARZE:
+
+class AddUserForm(forms.Form):
+    Formularz do dodawania nowego użytkownika.
+    Pola: email (ciąg znaków), password (ciąg znaków), repassword (ciąg znaków),
+            code (ciąg znaków), department (wybór)
+
+class LoginForm(forms.Form):
+    Formularz do logowania użytkownika.
+    Pola: username (ciąg znaków), password (ciąg znaków)
+
+class AddNewAppForm(forms.ModelForm):
+    Formularz do dodawania nowej aplikacji.
+    Pola: name (ciąg znaków), desc (tekst), icon (obraz)
+
+class AddNewHardwereForm(forms.ModelForm):
+    Formularz do dodawania nowego urządzenia.
+    Pola: name (ciąg znaków), desc (tekst), icon (obraz)
+
+class NewTechTicket(forms.ModelForm):
+    Formularz do tworzenia nowego zgoszenia Tech Desku.
+    Pola: item (FK Tech), comment (tekst)
+
+class NewAppTicket(forms.ModelForm):
+    Formularz do tworzenia nowego zgoszenia Tech Desku.
+    Pola: item (FK App), comment (tekst)
+
+
+ENG
+
+VIEWS:
+
+class Register(View):
+    Manages user registration.
+
+    GET: Renders the registration form.
+    POST: Processes the registration form and creates a new user account.
+
+class Login(View):
+    Manages user login.
+
+    GET: Renders the login form.
+    POST: Authenticates the user and logs them in if valid credentials are provided.
+
+class MainpageView(LoginRequiredMixin, View):
+    Displays the main dashboard after user login.
+
+    GET: Renders the main dashboard with summary information.
+
+class LogoutView(View):
+    Logs out the currently authenticated user.
+
+    GET: Logs out the user and renders the logout page.
+
+class ChooseFormView(LoginRequiredMixin, View):
+    Provides the option to choose a form to fill out.
+
+    GET: Renders the page for choosing a form.
+
+class ProfileView(LoginRequiredMixin, View):
+    Displays the user's profile information.
+
+    GET: Renders the user's profile page with data and associated tickets.
+
+class AddNewChooseView(LoginRequiredMixin, View):
+    Offers the choice to add a new item (application or technology).
+
+    GET: Renders the page for choosing the type of new item.
+
+class AddAppView(LoginRequiredMixin, View):
+    Adds a new application.
+
+    GET: Renders the form to add a new application.
+    POST: Processes the form and creates a new application.
+
+class AllAppsView(LoginRequiredMixin, ListView):
+    Displays a list of all applications.
+
+    GET: Renders the list of all applications.
+
+class AddNewHardwereView(LoginRequiredMixin, View):
+    Adds a new technology item.
+
+    GET: Renders the form to add a new technology item.
+    POST: Processes the form and creates a new technology item.
+
+class AllHardwereView(LoginRequiredMixin, ListView):
+    Displays a list of all technology items.
+
+    GET: Renders the list of all technology items.
+
+class NewTechTicketView(LoginRequiredMixin, View):
+    Creates a new technical support ticket.
+
+    GET: Renders the form to create a new technical support ticket.
+    POST: Processes the form and creates a new ticket.
+
+class AllTechTicketsView(LoginRequiredMixin, ListView):
+    Displays a list of all technical support tickets.
+
+    GET: Renders the list of all technical support tickets.
+
+class NewAppTicketView(LoginRequiredMixin, View):
+    Creates a new application support ticket.
+
+    GET: Renders the form to create a new application support ticket.
+    POST: Processes the form and creates a new ticket.
+
+class AllAppTicketsView(LoginRequiredMixin, ListView):
+    Displays a list of all application support tickets.
+
+    GET: Renders the list of all application support tickets.
+
+class AllEmployeeTicketsView(LoginRequiredMixin, View):
+    Displays a list of tickets for a specific employee.
+
+    GET: Renders the list of tickets for a particular employee.
+
+class AppView(LoginRequiredMixin, View):
+    Displays details of an application.
+
+    GET: Renders the page with detailed information about an application.
+
+class AppTicketView(LoginRequiredMixin, View):
+    Displays details of an application support ticket.
+
+    GET: Renders the page with detailed information about a ticket.
+    POST: Processes the form and updates the ticket status.
+
+class TechView(LoginRequiredMixin, View):
+    Displays details of a technology item.
+
+    GET: Renders the page with detailed information about a technology item.
+
+class TechTicketView(LoginRequiredMixin, View):
+    Displays details of a technical support ticket.
+
+    GET: Renders the page with detailed information about a ticket.
+    POST: Processes the form and updates the ticket status.
+
+class MyAppView(LoginRequiredMixin, View):
+    Displays user-specific details of an application.
+
+    GET: Renders the page with user-specific detailed information about an application.
+    POST: Processes the form and updates the status of the application ticket.
+
+class MyTechView(LoginRequiredMixin, View):
+    Displays user-specific details of a technology item.
+
+    GET: Renders the page with user-specific detailed information about a technology item.
+    POST: Processes the form and updates the status of the technical ticket.
+
+class EqView(View):
+    Displays information about equipment.
+
+    GET: Renders the page with information about equipment.
+
+class OfficeView(View):
+    Displays information about the office.
+
+    GET: Renders the page with information about the office.
+
+class SalesHelpView(View):
+    Displays information about support for the sales department.
+
+    GET: Renders the page with information about support for the sales department.
+
+
+MODELS:
+
+class CustomUser(AbstractUser):
+    Extends Django's AbstractUser for custom user information.
+    Fields: department (string), code (string)
+
+class Tech(models.Model):
+    Represents a technology item.
+    Fields: name (string), desc (text), icon (image), tickets (related Techtickets)
+
+class App(models.Model):
+    Represents an application.
+    Fields: name (string), desc (text), icon (image), tickets (related Apptickets)
+
+class Techticket(models.Model):
+    Represents a technical support ticket.
+    Fields: item (Tech FK), author (CustomUser FK), created (datetime),
+            comment (text), feedback (text), status (string)
+
+class Appticket(models.Model):
+    Represents an application support ticket.
+    Fields: item (App FK), author (CustomUser FK), created (datetime),
+            comment (text), feedback (text), status (string)
+
+FORMS:
+
+class AddUserForm(forms.Form):
+    Form for adding a new user.
+    Fields: email (string), password (string), repassword (string),
+            code (string), department (choice)
+
+class LoginForm(forms.Form):
+    Form for user login.
+    Fields: username (string), password (string)
+
+class AddNewAppForm(forms.ModelForm):
+    Form for adding a new application.
+    Fields: name (string), desc (text), icon (image)
+
+class AddNewHardwereForm(forms.ModelForm):
+    Form for adding new hardware item.
+    Fields: name (string), desc (text), icon (image)
+
+class NewTechTicket(forms.ModelForm):
+    Form for creating a new technical support ticket.
+    Fields: item (Tech FK), comment (text)
+
+class NewAppTicket(forms.ModelForm):
+    Form for creating a new application support ticket.
+    Fields: item (App FK), comment (text)

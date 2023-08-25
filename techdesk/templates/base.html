@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Desk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body {
+            margin: 0;
+            font-family: Arial,Helvetica, sans-serif;
+            font-size: 15px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            height: 100%;
+        }
+        .top-panel-title {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+        .top-panel-title h1{
+            color: white;
+
+        }
+        .top-panel {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .top-panel button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .top-panel button:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        .logout-button {
+            background-color: #FF5722;
+        }
+        .bottom-panel {
+        background-color: #f4f4f4;
+        padding: 20px;
+        flex: 1;
+
+    }
+
+    </style>
+</head>
+<body>
+    <div class="top-panel-title">
+        <h1>TECH DESK</h1>
+    </div>
+    <div class="top-panel">
+
+    <div>
+        <a href={% url 'main' %} ><button>Main Page</button></a>
+        <a href={% url 'profile' %} ><button>My Profile</button></a>
+        <a href={% url 'allapps' %} ><button>Apps</button></a>
+        <a href={% url 'allhardwere' %} ><button>Hardware</button></a>
+        <a href={% url 'chooseform' %} ><button>Submit Request</button></a>
+        <a href={% url 'persontickets' %} ><button>My Requests</button></a>
+        {% if user.is_superuser %}
+        <a href={% url 'apptickets' %} ><button>Apps Requests</button></a>
+        <a href={% url 'techtickets' %} ><button>Hardwere Requests</button></a>
+        <a href={% url 'choosenewform' %} ><button>Add new Device/App</button></a>
+        {% endif %}
+    </div>
+        <a href={% url 'logout' %} ><button class="logout-button">Logout</button></a>
+    </div>
+    <div class="bottom-panel">
+
+{% block content %}
+{% endblock content %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Logowanie - Tech Desk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+        }
+        .register-container {
+            background-color: #333;
+            color: #fff;
+            width: 33.33%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .AddUserForm {
+            width: 70%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: block;
+        }
+
+        .AddUserForm input[type="text"],
+        .AddUserForm input[type="password"] {
+            width: 100%;
+            padding: 10px;
+
+            border: none;
+            border-bottom: 1px solid #ccc;
+            outline: none;
+
+        }
+        .AddUserForm select{
+            width: 107%;
+            padding: 10px;
+
+            border: none;
+            border-bottom: 1px solid #ccc;
+            outline: none;
+        }
+        .AddUserForm button {
+            width: 107%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+
+        }
+        .AddUserForm button {
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .AddUserForm button:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        a{
+            color:#4CAF50;
+        }
+                .right-half {
+            padding-left: 20px;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            background-color: #f4f4f4;
+            width: 66.66%;
+        }
+
+        .info-box {
+
+
+            margin-bottom: 20px;
+            margin-right: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <H1>TECH DESK</H1>
+        <form class="AddUserForm" method="post">
+            {% csrf_token %}
+            <h2>Register</h2>
+            {{ form.as_p }}
+            <button type="submit">Register</button>
+        </form>
+        <p><a href={% url 'login' %} >Are you already registered? Login now!</a></p>
+    </div>
+    <div class="right-half">
+        <div class="info-box">
+            <h3>New user registration - important informations</h3><br><br>
+            <p>Remember to use only the information and templates provided by the employer when registering on our portal.</p><br>
+            <p>Email should be your first name, last name and department name separated by periods and ending with @td.com.</p><br>
+            <p>The ,,Code" field indicates your employee code sent or given to you during your first day of work</p><br>
+            <p>In case of inappropriate access to the platform, your access may be blocked or your data will be reactivated through the Tech Deck administrator</p><br>
+            <p>Tech Deck administrator. If you have questions, problems or concerns, contact your supervisor, HR or 1 of the Tech Deck staff on another platform.</p>
+        </div>
+    </div>
+</body>
+</html>
