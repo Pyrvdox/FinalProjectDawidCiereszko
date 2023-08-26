@@ -336,7 +336,7 @@ def test_delete_tech(custom_user, client):
     test_tech_ticket5 = Techticket.objects.create(item=tech5, author=custom_user, comment='Test Comment',feedback='OK', status='Approved')
     client.force_login(custom_user)
 
-    response = client.post(reverse('mytech', kwargs={'id': test_tech_ticket5.id}))
+    response = client.post(reverse('mytech', kwargs={'id': tech5.id}))
 
     test_tech_ticket5.refresh_from_db()
 
@@ -353,7 +353,7 @@ def test_delete_app(custom_user, client):
 
     client.force_login(custom_user)
 
-    response = client.post(reverse('myapp', kwargs={'id': test_app_ticket.id}))
+    response = client.post(reverse('myapp', kwargs={'id': app.id}))
 
     test_app_ticket.refresh_from_db()
 
