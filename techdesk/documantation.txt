@@ -163,6 +163,38 @@ class NewAppTicket(forms.ModelForm):
     Formularz do tworzenia nowego zgoszenia Tech Desku.
     Pola: item (FK App), comment (tekst)
 
+TESTY:
+test_user_registration_form - Testuje rejestrację użytkownika przez formularz. Sprawdza, czy po poprawnej rejestracji status odpowiedzi jest 302 (przekierowanie) i czy liczba użytkowników wzrosła o 1.
+
+test_user_login - Testuje logowanie użytkownika. Sprawdza, czy po poprawnym zalogowaniu status odpowiedzi to 200 (sukces) oraz czy użytkownik jest uwierzytelniony.
+
+test_user_logout - Testuje wylogowanie użytkownika. Sprawdza, czy po poprawnym wylogowaniu status odpowiedzi to 200 (sukces) oraz czy użytkownik nie jest uwierzytelniony.
+
+test_add_new_app_and_upload_image_form - Testuje dodawanie nowej aplikacji przez formularz wraz z przesyłaniem obrazu. Sprawdza, czy po dodaniu aplikacji liczba aplikacji wzrosła o 1, a także czy przekierowanie następuje na odpowiednią stronę.
+
+test_add_new_hardwere_upload_image_form - Testuje dodawanie nowego sprzętu (urządzenia) przez formularz wraz z przesyłaniem obrazu. Sprawdza, czy po dodaniu sprzętu liczba sprzętów wzrosła o 1.
+
+test_add_new_app_upload_image_form - Podobnie jak punkt 4, testuje dodawanie nowej aplikacji przez formularz wraz z przesyłaniem obrazu.
+
+test_add_new_hardwere_and_upload_image_form - Podobnie jak punkt 5, testuje dodawanie nowego sprzętu przez formularz wraz z przesyłaniem obrazu.
+
+test_new_app_ticket_form_with_post - Testuje tworzenie nowego zgłoszenia dla aplikacji. Sprawdza, czy po poprawnym utworzeniu zgłoszenia liczba zgłoszeń wzrosła o 1, a także czy przekierowanie następuje na odpowiednią stronę.
+
+test_update_tech_ticket - Testuje aktualizację zgłoszenia dotyczącego sprzętu (urządzenia) technicznego. Sprawdza, czy po poprawnej aktualizacji status odpowiedzi to 302, czy zgłoszenie faktycznie zostało zaktualizowane i czy przekierowanie następuje na odpowiednią stronę.
+
+test_update_app_ticket - Podobnie jak punkt 9, testuje aktualizację zgłoszenia dotyczącego aplikacji.
+
+test_delete_tech - Testuje usuwanie zgłoszenia dotyczącego sprzętu. Sprawdza, czy po poprawnym usunięciu zgłoszenia status odpowiedzi to 302, czy zgłoszenie faktycznie zmieniło status i czy przekierowanie następuje na odpowiednią stronę.
+
+test_delete_app - Podobnie jak punkt 11, testuje usuwanie zgłoszenia dotyczącego aplikacji.
+
+test_profile_view - Testuje widok profilu użytkownika. Sprawdza, czy po zalogowaniu i przejściu do profilu liczba zgłoszeń użytkownika jest poprawnie wyświetlana.
+
+test_mainpage_and_counters_view - Testuje widok strony głównej i wyświetlanie liczników zgłoszeń. Sprawdza, czy po zalogowaniu liczba użytkowników i zgłoszeń są poprawnie wyświetlane.
+
+test_views_without_id - Testuje różne widoki bez przekazywania parametru "id". Sprawdza, czy status odpowiedzi jest zgodny z oczekiwaniami.
+
+test_views_with_id - Testuje różne widoki z przekazywaniem parametru "id". Sprawdza, czy status odpowiedzi jest zgodny z oczekiwaniami.
 
 ENG
 
@@ -354,3 +386,37 @@ class NewTechTicket(forms.ModelForm):
 class NewAppTicket(forms.ModelForm):
     Form for creating a new application support ticket.
     Fields: item (App FK), comment (text)
+
+TESTS:
+
+test_user_registration_form - Tests user registration through a form. Checks if, after successful registration, the response status is 302 (redirect) and if the user count increased by 1.
+
+test_user_login - Tests user login. Checks if, after successful login, the response status is 200 (success) and if the user is authenticated.
+
+test_user_logout - Tests user logout. Checks if, after successful logout, the response status is 200 (success) and if the user is not authenticated.
+
+test_add_new_app_and_upload_image_form - Tests adding a new app through a form along with image upload. Checks if, after adding the app, the app count increased by 1, and also if the redirection is to the correct page.
+
+test_add_new_hardwere_upload_image_form - Tests adding new hardware (device) through a form along with image upload. Checks if, after adding the hardware, the hardware count increased by 1.
+
+test_add_new_app_upload_image_form - Similar to point 4, tests adding a new app through a form along with image upload.
+
+test_add_new_hardwere_and_upload_image_form - Similar to point 5, tests adding new hardware through a form along with image upload.
+
+test_new_app_ticket_form_with_post - Tests creating a new ticket for an app. Checks if, after successfully creating the ticket, the ticket count increased by 1, and also if the redirection is to the correct page.
+
+test_update_tech_ticket - Tests updating a technical hardware ticket. Checks if, after successful update, the response status is 302, if the ticket was actually updated, and if the redirection is to the correct page.
+
+test_update_app_ticket - Similar to point 9, tests updating an app ticket.
+
+test_delete_tech - Tests deleting a hardware ticket. Checks if, after successful deletion, the response status is 302, if the ticket status has changed, and if the redirection is to the correct page.
+
+test_delete_app - Similar to point 11, tests deleting an app ticket.
+
+test_profile_view - Tests the user's profile view. Checks if, after login and navigating to the profile, the user's ticket count is displayed correctly.
+
+test_mainpage_and_counters_view - Tests the main page view and the display of ticket counters. Checks if, after login, the user and ticket counts are displayed correctly.
+
+test_views_without_id - Tests various views without passing the "id" parameter. Checks if the response status matches the expectations.
+
+test_views_with_id - Tests various views with passing the "id" parameter. Checks if the response status matches the expectations.
